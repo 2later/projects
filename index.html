@@ -45,7 +45,9 @@
 const postsEl = document.getElementById('posts')
 const postElTemplate = ({title, url}) =>  `<a href="${url}" target="_blank"><h3>${title}</h3><iframe scrolling="no" src="${url}"/></a>`
 const githubEndpoint = 'https://api.github.com/repos/2later/projects/contents/'
-const myEnpoint = "/"
+const myEnpoint = "/" //file:///C:/Users/sagar/Documents/Random%20Small%20Projects/github-clone/projects/" // 
+
+const fileTitle = file => file.path.includes('index.html') ? file.path.replace('/index.html', '') : file.name.replace(".html","")
 
 let posts = []
 
@@ -60,19 +62,21 @@ async function updatePosts(endpoint) {
 	let raw = await fetch(endpoint)
 	let json = await raw.json()
 
-	json.forEach(file => {
+	json.forEach(async (file) => {
 		if (file.type === 'dir') { /* if file is a folder */
-			updatePosts(file.url)
+			await updatePosts(file.url)
+			return
 		}
-		else if (file.name.includes('.html')) { 
-			let fileTitle = file.path.includes('index.html') ? file.path.replace('/index.html', '') : file.name.replace(".html","")
-			posts.push({title: fileTitle, url: `${myEnpoint}${file.path}`})
+		else if (file.name.includes('.html') && file.path !== 'index.html') { /* is a website and not the blog */
+			let postContent = {title: fileTitle(file), url: `${myEnpoint}${file.path}`}
+			posts.push(postContent)
 			return
 		}
 	})
 
 	showPosts();
 }
+
 
 updatePosts(githubEndpoint)
 
