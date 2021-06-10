@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html id="html">
+
+<body>
+
+	<div class="buttons-container">
+		<div>
+			<button class="rectangle slide">Slide</button>
+			<button class="rectangle radial">Radial</button>
+			<button class="rectangle shrink">Shrink</button>
+		</div>
+		<div>
+			<button class="circle shrink">+</button>
+			<button class="circle shrink radial">+</button>
+			<button class="circle radial pulse">+</button>
+		</div>
+		<div>
+			<button class="rectangle hollow slide hop">Slide</button>
+			<button class="rectangle hollow radial pulse">Radial</button>
+			<button class="rectangle hollow shrink">Shrink</button>
+		</div>
+	</div>
+
+
+</body>
+
+
+</html>
+
+<style>
+	
+html {
+	--background-color: rgb(243,244,255);
+    --font-color: gray;
+    --shadow-color: rgb(0 0 0 / 20%);
+    --button-color: #7348ff;
+    --button-color-lighter: rgba(115, 72, 255, 0.2);
+    --quote-font-color: gray;
+    --animation-time: 1s;
+    --fast-animation-time: 500ms;
+}
+
+* { margin: 0; }
+
+body {
+	background: var(--background-color);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.buttons-container {
+	box-shadow: 0 0 20px var(--shadow-color);
+	padding: 10px;
+	width: 70%;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 2rem;
+	border-radius: 10px;
+	justify-content: center;
+
+}
+
+button:foucs { outline: none; }
+button { 
+	font-size: 2rem; 
+	border: none; 
+	color: var(--font-color); 
+	background: var(--background-color);
+	margin: 3rem;
+}
+
+button.rectangle {
+	padding: 10px 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px var(--shadow-color);
+}
+
+button.circle {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	box-shadow: 0 0 10px var(--shadow-color);
+}
+
+button.radial {
+	position: relative;
+	z-index: 1;
+}
+
+button.radial::before {
+	position: absolute;
+	content: "";
+	z-index: -1;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	background: var(--button-color);
+	border-radius: 50%;
+	transform: scale(0);
+	transform-origin: center;
+	transition: transform var(--animation-time);
+}
+
+button.rectangle.radial::before {
+	border-radius: 5px;	
+}
+
+button.radial:hover, button.radial:focus {
+	color: var(--background-color);
+	transition: color var(--animation-time);
+}
+
+button.radial:hover::before, button.radial:focus::before {
+	transform: scale(1);
+	transition: transform var(--animation-time);
+}
+
+button.shrink {
+	transform: scale(1);
+	transition: transform var(--fast-animation-time);
+}
+
+button.shrink:focus, button.shrink:hover {
+	transform: scale(0.9);
+	background: var(--button-color);
+	color: var(--background-color);
+	transition: transform var(--fast-animation-time), background var(--fast-animation-time), color var(--fast-animation-time);
+}
+ 
+button.slide {
+	position: relative;
+	z-index: 1;
+}
+
+button.rectangle.slide::before {
+	border-radius: 5px;
+}
+button.circle.slide::before {
+	border-radius: 50%;
+	clip-path: circle(50%, 50%);
+}
+
+button.slide::before {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	background: var(--button-color);
+	height: 100%;
+	width: 100%;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform var(--animation-time);
+}
+
+button.slide:focus, button.slide:hover {
+	color: var(--background-color);
+	transition: color var(--animation-time);
+}
+
+button.slide:focus::before, button.slide:hover::before {
+	transform: scaleX(1);
+	transition: transform var(--animation-time);
+}
+
+button.pulse { position: relative;  }
+button.rectangle.pulse::after { border-radius: 5px; }
+button.circle.pulse::after { border-radius: 50%; }
+
+button.pulse::after {
+	content: "";
+	position: absolute;
+	top: 0; left: 0;
+	width: 100%; height: 100%;
+	opacity: 0;
+	z-index: -1;
+	box-shadow: 0 0 14px var(--button-color), 0px 0px 8px 10px var(--button-color-lighter);
+}
+
+button.pulse:hover::after, button.pulse:focus::after { 
+	animation-name: pulse; 
+	animation-delay: calc(var(--animation-time) + 500ms);
+	animation-duration: var(--animation-time);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+@keyframes pulse {
+	from { transform: scale(0.4); opacity: 0.5; }
+	to   { transform: scale(1); opacity: 1; }
+}
+
+button.rectangle.hollow::before { border-radius: 2px; }
+
+button.hollow {
+	background: transparent;
+	border: 2px solid var(--button-color);
+	color: var(--button-color);
+	border-radius: 5px;
+	box-shadow: none;
+}
+
+button.hop {
+	transform: translateY(0);
+	transition: transform var(--fast-animation-time);
+	position: relative;
+}
+
+button.hop:focus, button.hop:hover {
+	transform: translateY(-7px);
+	transition-property: transform var(--fast-animation-time);
+}
+
+button.hop::after {
+	content: '';
+	position: absolute;
+	height: 5px;
+	width: 95%;
+	background: var(--shadow-color);
+	border-radius: 50%;
+	box-shadow: 0 0 20px var(--shadow-color);
+	opacity: 0;
+	left: 2.5%;
+	top: 150%;
+	transition: opacity var(--fast-animation-time);
+}
+
+button.hop:focus::after, button.hop:hover::after {
+	opacity: 0.8;
+	transition: opacity var(--animation-time);
+}
+
+
+</style>

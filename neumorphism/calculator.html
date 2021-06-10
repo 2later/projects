@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body id="body">
+
+	<div class="calculator-container">
+
+		<div class="calculator">
+			<div class="answer-container"><h2 id="answer-screen-text">000000</h2></div>
+			
+			<div class="buttons-container">
+				<div class="row">
+					<button class="round square">1</button>
+					<button class="round square">2</button>
+					<button class="round square">3</button>
+					<button class="round equals">=</button>
+				</div>
+				<div class="row">
+					<button class="round square">4</button>
+					<button class="round square">5</button>
+					<button class="round square">6</button>
+					<button class="round operator">+</button>
+				</div>
+				<div class="row">
+					<button class="round square">7</button>
+					<button class="round square">8</button>
+					<button class="round square">9</button>
+					<button class="round operator">-</button>
+				</div>
+				<div class="row">
+					<button class="round operator">÷</button>
+					<button class="round operator">×</button>
+					<button class="round square">0</button>
+					<button class="round operator">C</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
+
+<script>
+
+let operation = '';
+
+function calculate() {
+	let calculatedAnswer = eval(operation.replaceAll('×', '*').replaceAll('÷', '/'))
+	document.getElementById('answer-screen-text').innerHTML = calculatedAnswer;
+	operation = calculatedAnswer;
+}
+
+function clear() {
+	operation = '';
+	answer = 0;
+	document.getElementById('answer-screen-text').innerHTML = '000000';
+}
+
+function innitButtons() {
+	Array.prototype.forEach.call(document.getElementsByClassName('row'), row => {
+	    Array.prototype.forEach.call(row.children, button => {
+	    	button.addEventListener('click', () => handleInput(button.innerHTML))
+	    })
+	});
+}
+
+function handleInput(input) {
+	if (input == 'C' || input == 'Escape') clear();
+	else if (input == '=' || input == 'Enter') calculate();
+	else if (/[\d×÷+-/*]/g.test(input)) { /* If is number or +-×÷/* */
+		operation += input
+		document.getElementById('answer-screen-text').innerHTML = operation;
+	}
+}
+
+document.getElementById('body').addEventListener('keydown', e => handleInput(e.key)) /* Handle keyboard functions */
+
+innitButtons()
+
+</script>
+
+
+
+<style>
+
+
+html {
+	--background: #e9e9e9;
+	--pastel-background: #e0e0e0;/*lavender;*/
+	--shadow: #bebebed1;
+	--inset-color: #cdc8c8;
+	--pink-color: violet;
+	--blue-color: cadetblue;
+}
+
+body {
+	background: var(--background);
+	margin: 0;
+}
+
+.calculator-container {
+	text-align: -webkit-center;
+}
+
+.calculator {
+	width: 300px;
+	height: 400px;
+	margin: 1rem;
+	padding: 1rem;
+	border-radius: 10px;
+	background: var(--pastel-background);
+	box-shadow:  -4px 6px 22px var(--shadow), -8px 0px 10px #ffffffc9;
+}
+
+.answer-container {
+	width: 80%;
+	height: 50px;
+	border-radius: 7px;
+	box-shadow: inset 1px 3px 4px 0px var(--shadow); /* inset shadow */
+	margin: 10px;
+	text-align: right;
+}
+
+.answer-container h2 {
+	margin: 9px;
+    font-size: 2.5rem;
+    font-family: monospace;
+    font-weight: 100;
+    color: var(--inset-color);
+    overflow: hidden;
+}
+
+.buttons-container {
+	margin-top: 30px;
+}
+
+.buttons-container .row {
+	display: flex;
+}
+
+.buttons-container .row button {
+	margin: 10px;
+}
+
+.round {
+	background: var(--pastel-background);
+	box-shadow: 0 0 10px var(--shadow);
+	border: none;
+	padding: 5px;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	font-size: 1.5rem;
+	color: var(--inset-color);
+}
+
+.square {
+	border-radius: 10px;
+}
+
+.operator {
+	color: var(--blue-color);
+	font-weight: bold;
+	font-size: 2rem;
+}
+
+.equals {
+	color: var(--pink-color);
+	font-weight: bold;
+}
+
+.round:hover {
+	transform: scale(0.9);
+	transition: transform 120ms;
+}
+
+.round:focus {
+	outline-offset: 2px;
+	outline-color: var(--pastel-background);
+}
+
+</style>

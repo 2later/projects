@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://kit.fontawesome.com/aad05f3771.js" crossorigin="anonymous"></script>
+	<script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+
+<body>
+
+<header></header>
+
+
+<div class="input-container-container">
+	<div class="input-container">
+		<i class="fas fa-search"></i>
+		<input placeholder="Donald trump" id="search-input" type="text"/>
+	</div>
+	<div class="buttons-container">
+		<button class="button generate" id="generate-button">Generate</button>
+		<button class="button cancel" id="cancel-button">cancel</button>
+	</div>
+</div>
+
+
+<div class="quote-container" id="quote-container">
+	<h2>My huge random API</h2>
+	<small>Sagar Chaddha</small>
+</div>
+
+<div class="add-api-container-container">
+	<input type="checkbox" id="add-api-checkbox"><label for="add-api-checkbox" id="icon-label">+</label>
+	<div class="add-api-container">
+		<h2>Add an API to the website</h2>
+		<form id="add-api-form" onsubmit="addApiContainer(event); return false;">
+			<label>Title of API</label>
+			<input type="text" id="" placeholder="Donald Trump Quotes" />
+			<label>URL Endpoint</label>
+			<input type="text" id="" placeholder="api.donaldtrumpquotes.com/random/">
+			<label>Type</label>
+			<select>
+				<option value="quote">quote</option>
+				<option value="fact">fact</option>
+				<option value="search">search</option>
+				<option value="other">other</option>
+			</select>
+			<button type="submit" class="submit-api-button">Sumbit</button>
+		</form>
+	</div>
+</div>
+
+
+</body>
+
+</html>
+
+<script src="index.js"></script>
+
+<style>
+
+html {
+	--background-color: rgb(243,244,255);
+	--component-background: rgb(243,244,255); /*white;#ffffff6b*/;	
+	--font-color: gray;
+	--shadow-color: rgba(0,0,0,0.2);
+	--button-color: #7348ff;
+	--quote-font-color: gray; /*#a074a5;*/
+}
+
+body {
+	background: var(--background-color);
+	text-align: -webkit-center;
+	overflow-x: hidden;
+}
+
+.input-container-container {
+	margin: 30px;
+	background: var(--component-background);
+	width: 60%;
+	height: 150px;
+	padding: 50px;
+/*	box-shadow: 0 0 30px var(--shadow-color);
+*/	border-radius: 6px;
+}
+
+.input-container {
+    width: 80%;
+    margin: 20px;
+    background: var(--background-color);
+    border-radius: 5px;
+    display: flex;
+}
+
+.input-container i {
+    font-size: 50px;
+    color: var(--font-color);
+    vertical-align: middle;
+    margin-top: 18px;
+    padding-left: 10px;
+}
+
+.input-container input {
+	width: 80%;
+	height: 50px;
+	color: var(--font-color);
+	font-size: 35px;
+	padding: 20px;
+	border: none;
+	background: var(--background-color);
+}
+
+.input-container:hover {
+	box-shadow: 0 0 10px var(--shadow-color);
+	transition: box-shadow 200ms;
+}
+
+input:focus {
+	outline: none;
+}
+
+.buttons-container {
+    display: flex;
+    margin: 10px;
+    flex-direction: row-reverse;
+    gap: 10px;
+}
+
+.buttons-container button {
+	padding: 4px 10px;
+	color: var(--button-color);
+	background: none;
+	border: 1px solid var(--button-color);
+	border-radius: 2px;
+}
+
+.buttons-container .generate {
+	background: var(--button-color);
+	color: var(--background-color);
+}
+
+.button:focus, .button:hover {
+	outline: none;
+	box-shadow: 0 0 10px var(--shadow-color);
+	transition: box-shadow 100ms;
+}
+
+.quote-container {
+	width: 60%;
+	background: var(--component-background);
+	padding: 10px;
+	margin: 30px;
+	border-radius: 6px;
+	box-shadow: 0 0 20px var(--shadow-color);
+	text-align: left;
+}
+
+.quote-container h2 {
+    border-left: 2px solid var(--font-color);
+    padding-left: 10px;
+    color: var(--quote-font-color);
+    font-family: sans-serif;
+    margin-bottom: 5px;
+}
+
+.quote-container small {
+	color: var(--font-color);
+	text-align: right;
+	text-transform: uppercase;
+	font-family: monospace;
+}
+
+.add-api-container-container {
+
+}
+
+.add-api-container-container #icon-label {
+	position: fixed;
+    bottom: 7px;
+    right: 15px;
+	z-index: 4;
+	font-size: 50px;
+	background: var(--component-background);
+	box-shadow: 0 0 10px var(--shadow-color);
+	padding: 0 12px;
+	border-radius: 50%;
+	color: var(--font-color);
+	cursor: pointer;
+    transition: box-shadow 2s;
+}
+
+.add-api-container-container #icon-label:hover {
+	opacity: 0.8;
+	transition: opacity 100ms;
+}
+
+.add-api-container-container #add-api-checkbox {
+	z-index: 1;
+	position: absolute;
+	opacity: 0;
+}
+
+.add-api-container-container input:checked ~ .add-api-container {
+	display: block;
+	transform: translateX(0px);
+	transition: transform 200ms;
+}
+
+.add-api-container-container input:checked ~ #icon-label {
+	-webkit-animation: diagonalEnter 500ms linear forwards;
+ }
+
+
+
+
+@-webkit-keyframes diagonalEnter {
+    100%  { 
+    	transform: translatex(-345px) translatey(-440px) rotate(45deg);
+    	background: transparent;  
+    	box-shadow: 0 0 0 var(--component-background);  
+    }
+}
+
+
+.add-api-container {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	display: block;
+	z-index: 2;
+	transform: translateX(500px);
+	width: 400px;
+	height: 500px;
+	background: var(--component-background);
+	transition: transform 200ms;
+	box-shadow: 0 0 20px var(--shadow-color);
+	border-radius: 10px;
+	font-family: sans-serif;
+}
+
+.add-api-container h2 {
+    padding-top: 23px;
+    padding-bottom: 26px;
+    text-align: center;
+    margin: 10px;
+    color: var(--font-color);
+    font-size: 20px;
+    font-weight: 100;
+    border-bottom: 1px solid var(--font-color);
+}
+
+.add-api-container form {
+	margin: 10px;
+	padding: 17px;
+}
+
+.add-api-container form label {
+	color: var(--font-color);
+	font-size: 10px;
+	text-transform: uppercase;
+	display: block;
+	text-align: left;
+	padding-top: 14px;
+}
+
+.add-api-container form input {
+	background: var(--background-color);
+	color: var(--font-color);
+	border: none;
+	width: 80%;
+	padding: 10px;
+	display: block;
+	margin: 5px;
+	position: initial;
+}
+
+.submit-api-button {
+	display: block;
+    padding: 11px 30px;
+    color: var(--button-color);
+    background: none;
+    border: 1px solid var(--button-color);
+    border-radius: 2px;
+    margin-top: 30px;
+    position: relative;
+}
+
+.submit-api-button::before {
+	position: absolute;
+	content: "";
+	z-index: -1;
+	background: var(--button-color);
+	left: -1px;
+	bottom: -1px;
+	width: 102%;
+	height: 103%;
+	border-radius: 2px;
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform 300ms;
+}
+
+.submit-api-button:hover, .submit-api-button:focus {
+	outline: none;
+	color: var(--background-color);
+	transition: color 200ms;
+}
+
+.submit-api-button:hover::before, .submit-api-button:focus::before {
+	transform: scale(1);
+	transition: transform 300ms;
+}
+
+.add-api-container form select {
+	width: 100px;
+    padding: 9px;
+    background: var(--background-color);
+    border: none;
+    color: var(--font-color);
+    border-radius: 2px;
+    margin-right: 175px;
+}
+
+.add-api-container form select:hover, .add-api-container form select:focus {
+	outline-width: 1px;
+	outline-color: var(--font-color);
+	outline-style: solid;	
+}
+
+
+.add-api-container form select option {
+	
+}
+
+</style>

@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://kit.fontawesome.com/aad05f3771.js" crossorigin="anonymous"></script>
+
+<title>Neumorphism</title>
+<body id="body">
+
+	<header>
+		<div class="left">
+			<h1>Neu</h1>
+			<h1>morphism</h1>
+		</div>
+		<nav class="right">
+			<ul>
+				<li><i class="fas fa-home"></i></li>
+				<li><i class="fas fa-id-card-alt"></i></li>
+				<li><i class="fas fa-book"></i></li>
+			</ul>			
+		</nav>
+	</header>
+
+	<section class="posts-container">
+		<ul class="posts" id="posts"></ul>
+	</section>
+
+	<section class="blog-container">
+		<div class="blog-post">
+		<h1>General Nattering</h1>
+		<p>Dolore dolor eiusmod non dolor dolor non irure fugiat amet id aliqua ea aliqua voluptate eiusmod est anim ut mollit enim id ad cillum pariatur elit nostrud amet velit adipisicing non ut quis minim voluptate dolore voluptate culpa occaecat pariatur labore et ut laboris minim consectetur reprehenderit sunt velit deserunt in sit dolore minim ut do deserunt in est dolore in mollit dolor minim in deserunt culpa cillum aliqua dolore nisi anim ut aliquip magna anim proident est sint dolor aute cupidatat sed cillum adipisicing cillum nostrud minim deserunt dolore aliquip aute eu eu aute sed consequat veniam reprehenderit minim cupidatat consectetur aliqua amet anim ut quis sit cupidatat magna elit non sit dolor tempor exercitation veniam ex mollit nisi ex officia aute eu laboris deserunt aliquip elit magna ut culpa veniam deserunt nisi sint ex nisi et do deserunt quis sit quis reprehenderit culpa velit commodo occaecat sint laborum id duis qui duis ut ut et nisi dolor in nostrud velit non ut dolore excepteur ut ut dolor in enim minim eu id cupidatat ut proident cupidatat quis id excepteur nulla in.</p>
+		</div>
+	</section>
+
+</body>
+
+</html>
+
+<script>
+
+
+const posts = [
+  {
+    "title": "urna primis",
+    "description": "nulla ligula viverra malesuada adipiscing tempus et imperdiet donec felis potenti non adipiscing tristique dolor hendrerit at mattis mauris semper sem auctor senectus interdum libero sociosqu erat cubilia netus rhoncus congue mollis eu elit laoreet ut non vestibulum vulputate massa vestibulum ornare dui eget facilisis ac erat etiam suscipit sociosqu tempor venenatis ultrices elementum iaculis urna duis hac metus semper auctor congue orci platea facilisis quisque felis aptent libero pulvinar nibh nostra lorem cubilia sit dui bibendum accumsan nec tempus malesuada ullamcorper gravida sodales eros quam dui pretium pulvinar volutpat accumsan condimentum nostra amet magna duis posuere lectus proin donec eget egestas commodo morbi aptent aliquet laoreet dapibus facilisis vivamus lorem hendrerit dolor gravida urna potenti nisi venenatis habitant mauris nibh nec integer suscipit hendrerit pulvinar varius feugiat maecenas consectetur porttitor sed a aenean ligula pretium quisque conubia curabitur varius imperdiet posuere laoreet etiam viverra suspendisse dictumst augue adipiscing eget porttitor risus molestie pretium egestas velit libero id cursus torquent neque etiam tempus mauris placerat posuere"
+  },
+  {
+    "title": "suspendisse fames",
+    "description": "vulputate turpis mauris cubilia augue nunc dolor pellentesque aenean elementum etiam quisque felis faucibus duis sed nisi pharetra libero feugiat integer nam aliquet tellus curabitur viverra ligula enim vivamus praesent fusce praesent risus aliquet inceptos lectus cursus pulvinar nec cubilia rutrum tellus donec ullamcorper hac curabitur ornare elementum quisque turpis rhoncus etiam euismod etiam sapien convallis tincidunt eros pulvinar urna amet maecenas vehicula sem aptent sit tristique fringilla suscipit dictumst etiam euismod non erat dictumst inceptos nisl eleifend taciti torquent posuere mollis vitae velit non duis sit facilisis blandit sagittis malesuada elit elit fringilla suspendisse tellus risus turpis himenaeos ac eleifend aliquam nisi facilisis sagittis quis class conubia torquent non aptent aenean augue aenean nisi suscipit nulla donec hac conubia sem hendrerit felis aenean etiam conubia elementum praesent viverra fermentum congue taciti augue potenti vehicula faucibus suscipit tincidunt urna suspendisse aliquam consectetur suscipit aliquam vel nibh ipsum quisque duis suscipit mollis platea sed convallis semper orci accumsan cras proin aenean egestas tristique nullam ante turpis eget a sodales ac ultricies convallis consectetur quisque venenatis neque dictum fusce elit"
+  },
+  {
+    "title": "scelerisque nulla",
+    "description": "senectus congue suscipit ac fringilla faucibus primis praesent blandit sit netus purus ut ut ipsum lobortis et aliquam vehicula felis ornare primis lacus tristique fusce hendrerit egestas nunc odio vulputate sapien elementum praesent taciti varius posuere ligula auctor at ac proin vel facilisis potenti faucibus et condimentum class vel massa lectus nibh vulputate conubia sit ullamcorper pellentesque habitasse neque est suscipit adipiscing inceptos curabitur dictum augue etiam nunc aliquam praesent aliquam pulvinar class pulvinar aliquam potenti nisi suspendisse congue ad fermentum inceptos metus cras purus conubia hendrerit quis etiam malesuada curae mauris amet fames lorem arcu imperdiet curae ad aliquam mattis nam auctor per fringilla eget eleifend porta mollis sollicitudin habitasse laoreet quisque eget mattis rutrum quisque curae molestie sollicitudin accumsan suspendisse quisque elit class dolor dapibus vivamus metus purus sapien eros lorem ligula pulvinar nec lobortis eget quisque ipsum tortor tellus donec dictum sodales hac mi curae blandit feugiat turpis quis quam potenti"
+  },
+  {
+    "title": "aptent fringilla",
+    "description": "curabitur quisque magna netus lacinia varius dapibus massa ut aliquam metus magna torquent dui pretium etiam congue laoreet in blandit cursus morbi consectetur lacus sed habitant class suscipit metus curae ornare curae aptent taciti aliquam semper nisl dapibus nullam etiam congue scelerisque tempor euismod nisl pretium conubia nullam arcu ipsum magna mattis quisque posuere primis fermentum mattis vehicula ad consequat ligula ut neque neque commodo sollicitudin in donec vulputate consectetur vitae rutrum pretium turpis et aenean mauris sociosqu fames accumsan metus aenean dictumst luctus pharetra interdum quisque pretium vivamus magna quisque fermentum urna tempor senectus per placerat platea libero dapibus lorem lectus donec vitae odio dictumst varius maecenas praesent ullamcorper imperdiet lectus tincidunt placerat nostra inceptos ad habitant metus erat curae commodo vitae lacinia felis imperdiet varius condimentum at tellus bibendum mauris consectetur congue mattis pharetra auctor duis iaculis taciti porta egestas ut viverra eros hac blandit lectus lorem quam et est ut ullamcorper lectus habitant curae accumsan vitae viverra vitae tortor arcu tempus inceptos egestas tristique bibendum posuere arcu taciti senectus cubilia eleifend sed fusce hendrerit"
+  },
+  {
+    "title": "tempor ad",
+    "description": "porttitor egestas at laoreet vivamus euismod erat habitant lacus urna quisque sit nunc volutpat dictumst duis turpis tempus quam turpis feugiat sollicitudin habitant mauris lobortis turpis proin neque etiam vitae tincidunt quis luctus vivamus pharetra suscipit molestie est imperdiet sit scelerisque habitasse ut laoreet nostra curae amet pharetra accumsan class ultricies primis orci curae per vulputate varius est fusce sociosqu gravida donec ad habitasse molestie libero consectetur velit luctus litora dictumst pulvinar scelerisque etiam class metus netus sagittis malesuada odio torquent rhoncus senectus nostra aliquet hac bibendum metus cursus euismod ut egestas non tempus aenean id sem gravida adipiscing tristique malesuada mi luctus platea velit ante vel rhoncus praesent massa ligula sodales nisi pharetra accumsan lorem tincidunt elementum inceptos et luctus bibendum pulvinar cras lobortis scelerisque porta nostra egestas tellus tempor amet ante orci pulvinar lectus malesuada auctor congue maecenas congue aenean torquent libero metus nisi aliquam sed mauris curabitur porta ligula justo venenatis ut mollis tincidunt arcu ante"
+  },
+  {
+    "title": "mauris arcu",
+    "description": "curabitur est primis lacus fermentum euismod erat eget vitae netus at mauris auctor potenti vitae urna ipsum accumsan praesent neque aenean sem enim tortor malesuada nisi malesuada tristique torquent nisi nec mauris commodo magna purus class massa hac aenean quisque eget curae sagittis blandit leo commodo conubia nullam condimentum est libero mollis arcu ipsum est lectus eros sit euismod ullamcorper tincidunt habitasse leo purus sociosqu nulla nec ut ultrices tincidunt rutrum dui posuere ligula erat pellentesque dictumst convallis eu magna cursus accumsan varius praesent consectetur sit dolor ornare tortor porttitor laoreet metus primis non placerat inceptos sem nunc vehicula eros ut at cras laoreet fames ipsum duis ligula quisque eget pretium ultrices senectus feugiat dictumst a ac potenti sem fusce lacinia curabitur varius torquent ut est rutrum lacus bibendum dui auctor tincidunt ultrices accumsan dolor fermentum sollicitudin ipsum tincidunt aliquam suscipit porttitor eget sapien tortor ad magna vel nulla consectetur morbi morbi sagittis sit in iaculis libero netus ligula praesent fames varius aliquam elit egestas senectus suscipit et cubilia erat aenean enim aenean viverra venenatis eleifend torquent"
+  },
+  {
+    "title": "velit blandit",
+    "description": "sit augue enim elementum lorem at velit risus id massa est gravida pulvinar vehicula inceptos nulla viverra habitant etiam elementum dictumst vulputate morbi hendrerit leo vestibulum suscipit phasellus sed posuere commodo luctus nec hendrerit donec donec duis interdum consequat ultricies pretium ad ultricies netus tincidunt tortor dolor ut vel tristique pretium quisque hendrerit tempor vitae quis netus feugiat ipsum dui tempus mauris ac laoreet etiam consectetur morbi aliquam lacinia eu integer aenean adipiscing augue pharetra in ad habitasse placerat a venenatis rhoncus himenaeos taciti laoreet euismod pretium blandit feugiat netus vulputate lobortis mattis fusce proin donec fermentum elit accumsan cubilia placerat donec lorem elementum praesent duis egestas convallis id viverra a suspendisse convallis cubilia non praesent mollis viverra aliquam eget pretium molestie congue integer arcu torquent quisque venenatis blandit curae metus dapibus sodales aliquam lacinia leo nullam nostra nisl ante aliquam fermentum platea orci ut ante malesuada dictumst accumsan lacinia fermentum non quam netus lobortis aliquam porttitor faucibus viverra sollicitudin auctor neque sapien cursus inceptos nullam tristique leo porttitor facilisis sollicitudin neque pharetra aliquet curae mi commodo"
+  }
+]
+const postsEl = document.getElementById('posts')
+const postElTemplate = ({title, description}) =>  `
+<li>
+	<h3>${title}</h3>
+	<p>${description}</p>
+</li>
+`
+
+posts.forEach(post => {
+	postsEl.innerHTML += postElTemplate(post)
+})
+
+
+
+posts.forEach
+
+
+
+
+</script>
+
+
+
+<style>
+
+
+html {
+	--background: #e9e9e9;
+	--pastel-background: #d1d8ec;/*lavender;*/
+	--shadow: #bebebed1;
+	--light-font-color: #d8dff5;
+	--darker-inset-color: #a8afc6;
+	--pink-color: violet;
+	--blue-color: cadetblue;
+}
+
+body {
+	background: var(--light-font-color);
+	margin: 0;
+	overflow-x: hidden;
+}
+
+header {
+	display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    box-shadow: -1px -3px 16px 0px var(--shadow);
+}
+
+header .left {
+	padding: 10px;
+}
+
+header .left h1 {
+	text-transform: uppercase;
+	font-family: fantasy;
+	letter-spacing: 8px;
+	font-size: 3rem;
+	color: var(--light-font-color);
+	text-shadow: 0 0 9px var(--shadow);
+}
+
+header .right {
+	padding: 10px;
+	align-self: center;
+}
+
+header .right ul {
+	display: flex;
+	list-style: none;
+}
+
+header .right ul li {
+	margin: 10px;
+	padding: 5px;
+	width: 50px;
+	height: 50px;
+	text-align-last: center;
+	box-shadow: 0 0 10px 0px var(--shadow);
+	border-radius: 5px;
+}
+
+li i {
+	font-size: 2rem;
+	color: var(--light-font-color);
+	text-shadow: 0 0 7px var(--shadow);
+	padding-top: 6px;
+}
+
+
+.posts-container {
+	width: 80%;
+	overflow-x: scroll;
+	margin: 0 auto;
+}
+
+.posts {
+	list-style: none;
+	display: flex;
+	margin: 10px;
+	width: fit-content;
+}
+
+.posts li {
+	width: 17vw;
+    height: 55vh;
+    box-shadow: 0 0 10px 0px var(--shadow);
+    border-radius: 6px;
+    text-align: left;
+    overflow: hidden;
+    background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.getconfide.com%2Fmedia%2Ffull%2Fconfide-android-screenshot-5.png&f=1&nofb=1);
+    background-position: bottom;
+    background-size: cover;
+    margin: 0 8px;
+}
+
+.posts li h3 {
+	text-transform: uppercase;
+	font-family: fantasy;
+	letter-spacing: 3px;
+	font-size: 2rem;
+	color: var(--light-font-color);
+	text-shadow: 0 0 5px var(--shadow);
+	padding: 5px;
+	background: var(--pastel-background);
+}
+
+.posts li p {
+	font-family: sans-serif;	
+	background: var(--pastel-background);
+	padding: 3px;
+	color: var(--darker-inset-color);
+	opacity: 0.8;
+}
+
+.blog-container {
+	width: 80%;
+	text-align: -webkit-center;
+	margin: 0 auto;
+}
+
+.blog-post {
+	text-align: left;
+	box-shadow: 0 0 10px 0px var(--shadow);
+	border-radius: 10px;
+	padding: 15px;
+	margin: 50px 0;
+}
+
+.blog-post h1 {
+	text-transform: uppercase;
+	font-family: fantasy;
+	letter-spacing: 8px;
+	font-size: 3rem;
+	color: var(--light-font-color);
+	text-shadow: 0 0 9px var(--shadow);
+}
+
+.blog-post p {
+	font-family: sans-serif;
+	font-size: 1.2rem;
+}
+
+</style>
