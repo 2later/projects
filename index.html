@@ -29,23 +29,27 @@
 
 	<section class="blog-container">
 		<div class="blog-post">
-		<h1>Website Blog</h1>
-		<p>Got so much to talk about, have to make a blog about all my awesome websites.</p>
-		<p>This website uses the github API to gather a JSON list of all my projects in my repositry. It then compiles the HTML files into a list of objects. The title is either the name of the HTML file, or the name of the parent folder. Due to my dodgy programming, there are about 100 duplicates of every website (think this is a asyncrous fetch problem).</p>
-		<p>The list of websites contains a post div which contains the title and an iFrame - this is so you get a preview of the website. It is a cool concept, but in reality is janky and bad for peformance :( Also users which use Tab to operate are gonna struggle.</p>
+			<h1>Website Blog</h1>
+			<p>Got so much to talk about, have to make a blog about all my awesome websites.</p>
+			<p>This website uses the github API to gather a JSON list of all my projects in my repositry. It then compiles the HTML files into a list of objects. The title is either the name of the HTML file, or the name of the parent folder. Due to my dodgy programming, there is some weird asyncrounous function problems happening.</p>
+			<p>The list of websites contains a post div which contains the title and an iFrame - this is so you get a preview of the website. It is a cool concept, but in reality is janky and bad for peformance :( Also users which use Tab to operate are gonna struggle.</p>
 		</div>
 
 		<section class="small-blog-container">
 			<div id="blogs-small-1">
 				<div class="blog-post">
-					<h1>Some post</h1>
-					<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p>
+					<h1>Tab users, is it worth it?</h1>
+					<p>Reading blog posts and watching youtube videos, it seems website developers spend 90% of their energy on supporting tab users for Grandad Accesibility.</p>
+					<p>Is this really worth it? Seems like alot of faff considering the sorta people who use tab to operate a website, aren't gonna get much use out of "What bread am I?" Buzzfeed quizes. I think web developers should start targeting their audience, by reducing the functionality of the page.</p>
+					<p>Your websites for the youds of today? Make the text tiny - to prevent gazes of senile eyes. You making a website for diet planning? Make the buttons tiny - so Dr Fat Fingers isn't getting involved.</p>
 				</div>
 			</div>
 			<div id="blogs-small-2">
 				<div class="blog-post">
-					<h1>Some post</h1>
+					<h1>Another great post</h1>
 					<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p>
+					<p>Pariatur ad excepteur reprehenderit ad in sint tempor sunt sunt consectetur minim nisi fugiat sit amet sit elit ut enim quis. Laboris cupidatat cillum adipisicing ad aute occaecat ea dolor mollit anim esse voluptate velit.</p>
+					<p>Veniam ut officia in sunt cillum qui eu aliquip aliquip irure id sunt in excepteur occaecat.</p>
 				</div>
 			</div>
 		</section>
@@ -91,7 +95,7 @@
 const postsEl = document.getElementById('posts')
 const postElTemplate = ({title, url}) =>  `<a href="${url}" target="_blank"><h3>${title}</h3><iframe scrolling="no" src="${url}"/></a>`
 const githubEndpoint = 'https://api.github.com/repos/2later/projects/contents/'
-const myEnpoint = "file:///C:/Users/sagar/Documents/Random%20Small%20Projects/github-clone/projects/" // 
+const myEnpoint = "/" // file:///C:/Users/sagar/Documents/Random%20Small%20Projects/github-clone/projects/" // 
 
 const fileTitle = file => file.path.includes('index.html') ? file.path.replace('/index.html', '') : file.name.replace(".html","")
 
@@ -318,6 +322,7 @@ li i {
 .tiny-blog-container .blog-post:first-child:hover, .tiny-blog-container .blog-post:first-child:focus {
 	transform: scale(1.05);
 	z-index: 3;
+	transition: transform 200ms;
 }
 
 .tiny-blog-container .blog-post:hover:not(:first-child), .tiny-blog-container .blog-post:focus:not(:first-child) {
