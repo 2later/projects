@@ -29,10 +29,56 @@
 
 	<section class="blog-container">
 		<div class="blog-post">
-		<h1>General Nattering</h1>
-		<p>Dolore dolor eiusmod non dolor dolor non irure fugiat amet id aliqua ea aliqua voluptate eiusmod est anim ut mollit enim id ad cillum pariatur elit nostrud amet velit adipisicing non ut quis minim voluptate dolore voluptate culpa occaecat pariatur labore et ut laboris minim consectetur reprehenderit sunt velit deserunt in sit dolore minim ut do deserunt in est dolore in mollit dolor minim in deserunt culpa cillum aliqua dolore nisi anim ut aliquip magna anim proident est sint dolor aute cupidatat sed cillum adipisicing cillum nostrud minim deserunt dolore aliquip aute eu eu aute sed consequat veniam reprehenderit minim cupidatat consectetur aliqua amet anim ut quis sit cupidatat magna elit non sit dolor tempor exercitation veniam ex mollit nisi ex officia aute eu laboris deserunt aliquip elit magna ut culpa veniam deserunt nisi sint ex nisi et do deserunt quis sit quis reprehenderit culpa velit commodo occaecat sint laborum id duis qui duis ut ut et nisi dolor in nostrud velit non ut dolore excepteur ut ut dolor in enim minim eu id cupidatat ut proident cupidatat quis id excepteur nulla in.</p>
+		<h1>Website Blog</h1>
+		<p>Got so much to talk about, have to make a blog about all my awesome websites.</p>
+		<p>This website uses the github API to gather a JSON list of all my projects in my repositry. It then compiles the HTML files into a list of objects. The title is either the name of the HTML file, or the name of the parent folder. Due to my dodgy programming, there are about 100 duplicates of every website (think this is a asyncrous fetch problem).</p>
+		<p>The list of websites contains a post div which contains the title and an iFrame - this is so you get a preview of the website. It is a cool concept, but in reality is janky and bad for peformance :( Also users which use Tab to operate are gonna struggle.</p>
 		</div>
+
+		<section class="small-blog-container">
+			<div id="blogs-small-1">
+				<div class="blog-post">
+					<h1>Some post</h1>
+					<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p>
+				</div>
+			</div>
+			<div id="blogs-small-2">
+				<div class="blog-post">
+					<h1>Some post</h1>
+					<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="tiny-blog-container">
+			<a class="blog-post">
+				<h1>Some post</h1>
+				<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p>
+			</a>
+			<a class="blog-post">
+				<h1>Some post</h1>
+				<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p>
+			</a>
+			<a class="blog-post">
+				<h1>Some post</h1>
+				<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p>
+			</a>
+			<a class="blog-post">
+				<h1>Some post</h1>
+				<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p>
+			</a>
+			<a class="blog-post">
+				<h1>Some post</h1>
+				<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p>
+			</a>
+			<a class="blog-post">
+				<h1>Some post</h1>
+				<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p>
+			</a>
+		</section>
+
 	</section>
+
 
 </body>
 
@@ -45,7 +91,7 @@
 const postsEl = document.getElementById('posts')
 const postElTemplate = ({title, url}) =>  `<a href="${url}" target="_blank"><h3>${title}</h3><iframe scrolling="no" src="${url}"/></a>`
 const githubEndpoint = 'https://api.github.com/repos/2later/projects/contents/'
-const myEnpoint = "/" //file:///C:/Users/sagar/Documents/Random%20Small%20Projects/github-clone/projects/" // 
+const myEnpoint = "file:///C:/Users/sagar/Documents/Random%20Small%20Projects/github-clone/projects/" // 
 
 const fileTitle = file => file.path.includes('index.html') ? file.path.replace('/index.html', '') : file.name.replace(".html","")
 
@@ -88,10 +134,9 @@ updatePosts(githubEndpoint)
 
 
 html {
-	--background: #e9e9e9;
-	--pastel-background: #d1d8ec;/*lavender;*/
+	--gray-background: #d7d9de;/*lavender;*/
 	--shadow: #bebebed1;
-	--light-font-color: #d8dff5;
+	--background: #f3f4ff;
 	--darker-inset-color: #a8afc6;
 	--pink-color: violet;
 	--blue-color: cadetblue;
@@ -99,7 +144,7 @@ html {
 }
 
 body {
-	background: var(--light-font-color);
+	background: var(--background);
 	margin: 0;
 	overflow-x: hidden;
 }
@@ -122,7 +167,7 @@ header .left h1 {
 	font-family: fantasy;
 	letter-spacing: 8px;
 	font-size: 3rem;
-	color: var(--light-font-color);
+	color: var(--background);
 	text-shadow: 0 0 9px var(--shadow);
 }
 
@@ -144,19 +189,27 @@ header .right ul li {
 	text-align-last: center;
 	box-shadow: 0 0 10px 0px var(--shadow);
 	border-radius: 5px;
+	transform: scale(1);
+	transition: transform 250ms;
+	cursor: pointer;
 }
 
 li i {
 	font-size: 2rem;
-	color: var(--light-font-color);
+	color: var(--background);
 	text-shadow: 0 0 7px var(--shadow);
 	padding-top: 6px;
+}
+
+.right ul li:hover, .right ul li:focus {
+	transform: scale(0.9);
 }
 
 
 .posts-container {
 	width: 80%;
 	overflow-x: scroll;
+	overflow-y: hidden;
 	margin: 0 auto;
 }
 
@@ -177,11 +230,13 @@ li i {
     margin: 0 8px;
     text-decoration: none;
     position: relative;
+	transform: scale(1);
+   	transition: transform 200ms;
 }
 
-.post a:hover {
-	transform: scale(1.1);
-	transition: scale 300ms;
+.posts a:hover, .posts a:focus {
+	transform: scale(1.05);
+	outline: none;
 }
 
 .posts a h3 {
@@ -189,10 +244,10 @@ li i {
 	font-family: fantasy;
 	letter-spacing: 3px;
 	font-size: 2rem;
-	color: var(--light-font-color);
+	color: var(--background);
 	text-shadow: 0 0 5px var(--shadow);
 	padding: 5px;
-	background: var(--pastel-background);
+	background: var(--gray-background);
 }
 
 .posts a iframe {
@@ -207,9 +262,75 @@ li i {
     pointer-events: none;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track  {
+  background: var(--background);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb  {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover   {
+  background: #555;
+}
+
+
+
+.small-blog-container {
+	display: flex;
+	gap: 10px;
+	margin: 20px;
+}
+
+.tiny-blog-container {
+	display: flex;
+	width: 80%;
+	height: 300px;
+	margin-bottom: 20px;
+	overflow-x: scroll;
+	overflow-y: hidden;
+	padding: 10px;
+}
+
+.tiny-blog-container .blog-post { cursor: pointer; }
+
+.tiny-blog-container .blog-post:not(:first-child) {
+	transform: translateX(0);
+	margin-left: -15px;
+	box-shadow: -4px 0px 15px 0px var(--shadow);
+	width: 90%;
+	transition: transform 200ms;
+}
+
+.tiny-blog-container .blog-post:first-child:hover, .tiny-blog-container .blog-post:first-child:focus {
+	transform: scale(1.05);
+	z-index: 3;
+}
+
+.tiny-blog-container .blog-post:hover:not(:first-child), .tiny-blog-container .blog-post:focus:not(:first-child) {
+	transform: translateX(-15px) scale(1.05);
+}
+
+.tiny-blog-container .blog-post h1 {
+	color: var(--blue-color);
+	font-size: 2rem;
+}
+
+.tiny-blog-container a {
+	text-decoration: none;
+}
 
 .blog-container {
-	width: 80%;
+	width: 75%;
 	text-align: -webkit-center;
 	margin: 0 auto;
 }
@@ -219,22 +340,30 @@ li i {
 	box-shadow: 0 0 10px 0px var(--shadow);
 	border-radius: 10px;
 	padding: 15px;
-	margin: 50px 0;
+	margin-top: 50px;
+	background: var(--background);
+	overflow-y: clip;
 }
 
 .blog-post h1 {
 	text-transform: uppercase;
-	font-family: fantasy;
-	letter-spacing: 8px;
-	font-size: 3rem;
-	color: var(--light-font-color);
-	text-shadow: 0 0 9px var(--shadow);
+    font-family: fantasy;
+    letter-spacing: 8px;
+    font-size: 3rem;
+    color: var(--background);
+    text-shadow: 0 0 9px var(--shadow);
+    background: var(--gray-background);
+    padding: 9px 7px 8px 23px;
+    width: 100%;
+    margin-left: -15px;
 }
 
 .blog-post p {
 	font-family: sans-serif;
 	font-size: 1.2rem;
 	color: var(--font-color);
+	margin: 17px;
 }
+
 
 </style>
