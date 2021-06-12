@@ -41,7 +41,7 @@
 					<h1>Tab users, is it worth it?</h1>
 					<p>Reading blog posts and watching youtube videos, it seems website developers spend 90% of their energy on supporting tab users for Grandad Accesibility.</p>
 					<p>Is this really worth it? Seems like alot of faff considering the sorta people who use tab to operate a website, aren't gonna get much use out of "What bread am I?" Buzzfeed quizes. I think web developers should start targeting their audience, by reducing the functionality of the page.</p>
-					<p>Your websites for the youds of today? Make the text tiny - to prevent gazes of senile eyes. You making a website for diet planning? Make the buttons tiny - so Dr Fat Fingers isn't getting involved.</p>
+					<p>Your websites for the youds of today? Make the text tiny - to prevent gazes of senile eyes. You making a website for diet planning? Make the buttons tiny - so fat fingers isn't getting involved.</p>
 				</div>
 			</div>
 			<div id="blogs-small-2">
@@ -54,7 +54,7 @@
 			</div>
 		</section>
 
-		<section class="tiny-blog-container">
+		<section class="tiny-blog-container" id="tiny-blog-container">
 			<a class="blog-post">
 				<h1>Some post</h1>
 				<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p>
@@ -93,13 +93,22 @@
 
 
 const postsEl = document.getElementById('posts')
+const tinyBlogEl = document.getElementById('tiny-blog-container');
+const featuredBlogOneEl = document.getElementById('blogs-small-1')
+const featuredBlogTwoEl = document.getElementById('blogs-small-2')
+
 const postElTemplate = ({title, url}) =>  `<a href="${url}" target="_blank"><h3>${title}</h3><iframe scrolling="no" src="${url}"/></a>`
+const blogElTemplate = ({title, paragraph, url}) => `<a class="blog-post" href='${url}'><h1>${title}</h1><p>${paragraph}</p></a>`
+
+const blogEndpoint = 'https://raw.githubusercontent.com/2later/projects/master/blog.json'
 const githubEndpoint = 'https://api.github.com/repos/2later/projects/contents/'
 const myEnpoint = "/" // file:///C:/Users/sagar/Documents/Random%20Small%20Projects/github-clone/projects/" // 
 
 const fileTitle = file => file.path.includes('index.html') ? file.path.replace('/index.html', '') : file.name.replace(".html","")
+const randomChoice = list => list[Math.floor(Math.random() * list.length)]
 
 let posts = []
+let blogs = []
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
@@ -111,6 +120,12 @@ async function asyncForEach(array, callback) {
 function showPosts() {
 	postElTemplate.innerHTML = ''
 	posts.forEach(post => { postsEl.innerHTML += postElTemplate(post) })
+}
+
+function showBlogs(listBlogs, blogEl) {
+	blogEl.innerHTML = ''
+	try { listBlogs.forEach(blog => { blogEl.innerHTML += blogElTemplate(blog) }) }
+	catch(e) { blogEl.innerHTML = blogElTemplate(listBlogs).replace('a', 'div') } /* If a featured blogpost */
 }
 
 async function updatePosts(endpoint) {
@@ -130,7 +145,17 @@ async function updatePosts(endpoint) {
 	})
 }
 
-const startWebsite = async () => { await updatePosts(githubEndpoint); showPosts(); }
+async function updateBlogs() {
+	let raw = await fetch(blogEndpoint)
+	blogs = JSON.parse(await raw.json())
+
+	showBlogs(blogs, tinyBlogEl)
+
+	showBlogs( randomChoice(blogs.filter(b => b.featured)), featuredBlogOneEl )
+	showBlogs( randomChoice(blogs.filter(b => b.featured)), featuredBlogTwoEl )
+}
+
+const startWebsite = async () => { await updatePosts(githubEndpoint); showPosts(); updateBlogs(); }
 startWebsite();
 
 </script>
@@ -309,29 +334,50 @@ li i {
 	padding: 10px;
 }
 
-.tiny-blog-container .blog-post { cursor: pointer; }
+.tiny-blog-container .blog-post { 
+	cursor: pointer; 
+	transition: transform 200ms;
+	position: relative;
+	padding-top: 0;
+	z-index: 1;
+}
+
+.tiny-blog-container .blog-post::before {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	background: var(--gray-background);
+	height: 100%; width: 100%;
+	top: 0; left: 0;
+	transform: scaleY(1);
+	transform-origin: top;
+	transition: transform 300ms;
+}
+
+.tiny-blog-container .blog-post:hover::before, .tiny-blog-container .blog-post:focus::before {
+	transform: scaleY(0.5);
+}
 
 .tiny-blog-container .blog-post:not(:first-child) {
 	transform: translateX(0);
 	margin-left: -15px;
 	box-shadow: -4px 0px 15px 0px var(--shadow);
 	width: 90%;
-	transition: transform 200ms;
 }
 
-.tiny-blog-container .blog-post:first-child:hover, .tiny-blog-container .blog-post:first-child:focus {
+.tiny-blog-container .blog-post:first-child:hover, .tiny-blog-container .blog-post:first-child:focus, .tiny-blog-container .blog-post:last-child:hover, .tiny-blog-container .blog-post:last-child:focus  {
 	transform: scale(1.05);
 	z-index: 3;
-	transition: transform 200ms;
 }
 
-.tiny-blog-container .blog-post:hover:not(:first-child), .tiny-blog-container .blog-post:focus:not(:first-child) {
+.tiny-blog-container .blog-post:hover:not(:first-child, :last-child), .tiny-blog-container .blog-post:focus:not(:first-child, :last-child) {
 	transform: translateX(-15px) scale(1.05) rotate(5deg);
 }
 
 .tiny-blog-container .blog-post h1 {
 	color: var(--blue-color);
 	font-size: 2rem;
+	margin-top: 0;
 }
 
 .tiny-blog-container a {
@@ -381,6 +427,10 @@ li i {
 		display: none;
 	}
 
+	.blog-container {
+		width: 88%;
+	}
+
 	.small-blog-container { 
 	    height: 500px;
 	    padding: 8px;
@@ -389,7 +439,7 @@ li i {
 
 	.small-blog-container .blog-post {
 		height: 300px;
-		width: 140px;
+		width: 160px;
 		overflow-y: scroll;
 		overflow-x: hidden;
 		padding: 5px;
