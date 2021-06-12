@@ -147,7 +147,7 @@ async function updatePosts(endpoint) {
 
 async function updateBlogs() {
 	let raw = await fetch(blogEndpoint)
-	blogs = JSON.parse(await raw.json())
+	blogs = await raw.json()
 
 	showBlogs(blogs, tinyBlogEl)
 
