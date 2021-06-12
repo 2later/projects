@@ -1,1 +1,86 @@
-"[{\"featured\":false,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.\"},{\"featured\":false,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.\"},{\"featured\":false,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.\"},{\"featured\":false,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.\"},{\"featured\":false,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.\"},{\"featured\":false,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.\"},{\"featured\":false,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.\"},{\"featured\":false,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.\"},{\"featured\":false,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.\"},{\"featured\":false,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.\"},{\"featured\":false,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.\"},{\"featured\":false,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.\"},{\"featured\":true,\"title\":\"blog-post\",\"url\":\"/\",\"paragraph\":\"<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p><p>Pariatur ad excepteur reprehenderit ad in sint tempor sunt sunt consectetur minim nisi fugiat sit amet sit elit ut enim quis. Laboris cupidatat cillum adipisicing ad aute occaecat ea dolor mollit anim esse voluptate velit.</p><p>Veniam ut officia in sunt cillum qui eu aliquip aliquip irure id sunt in excepteur occaecat.</p>\"},{\"featured\":true,\"title\":\"Tab users, is it worth it?\",\"url\":\"/\",\"paragraph\":\"<p>Reading blog posts and watching youtube videos, it seems website developers spend 90% of their energy on supporting tab users for Grandad Accesibility.</p><p>Is this really worth it? Seems like alot of faff considering the sorta people who use tab to operate a website, aren't gonna get much use out of \\\"What bread am I?\\\" Buzzfeed quizes. I think web developers should start targeting their audience, by reducing the functionality of the page.</p><p>Your websites for the youds of today? Make the text tiny - to prevent gazes of senile eyes. You making a website for diet planning? Make the buttons tiny - so fat fingers isn't getting involved.</p>\"}]"
+[
+  {
+    "featured": false,
+    "title": "blog-post",
+    "url": "/",
+    "paragraph": "Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in."
+  },
+  {
+    "featured": false,
+    "title": "blog-post",
+    "url": "/",
+    "paragraph": "Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in."
+  },
+  {
+    "featured": false,
+    "title": "blog-post",
+    "url": "/",
+    "paragraph": "Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in."
+  },
+  {
+    "featured": false,
+    "title": "Another genius project",
+    "url": "/",
+    "paragraph": "<p>I have made too many (bad) websites. A couple of which I display at the top of the page. I think most of the websites follow a similar design theme; light pastel colours, soft borders, rounded shapes, ect. The websites featured on the websites are mainly made to improve my website designing skills (which is for the most part shocking) and therefore have almost no practical purpose.</p><p>However I have made a couple of functional websites, alongside some hobby websites. Among my \"functional websites\" I have a website designed called <a href=\"http://exam-parser.infinityfreeapp.com/\">exam parser</a>, where a user uploads a PDF of a exam paper and mark scheme, which the website converts into a usable online test. This sounds much more useful than it is - sadly it barely works with the paper I designed it around.</p><p>The first challenge is converting PDFs into readable data. As I was using a node JS server, I used a library which claimed to take a "snapshot" of the PDF, like if you opened a PDF and Ctrl A Ctrl C the whole document. Once again a good concept, but in reality you end up with a weird jumble of letters where tables have been converted directly into text. I persevered and used different complicated arrays of regEX on the string recursively until I ended up with an object that kinda represented the hierarchy of questions (1 > a > i, b > i, ii, c, ect.), and then display this hierarchy on the site. However, PDF papers and mark schemes are the most irregular documents - I would need both a masters in regular expressions and more time on my hands than a divorced 40 year old. So long story short, the website will probably not help your GCSEs.</p>"
+  },
+  {
+    "featured": false,
+    "title": "blog-post",
+    "url": "/",
+    "paragraph": "Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in."
+  },
+  {
+    "featured": false,
+    "title": "blog-post",
+    "url": "/",
+    "paragraph": "Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in."
+  },
+  {
+    "featured": false,
+    "title": "blog-post",
+    "url": "/",
+    "paragraph": "Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in."
+  },
+  {
+    "featured": false,
+    "title": "blog-post",
+    "url": "/",
+    "paragraph": "Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in."
+  },
+  {
+    "featured": false,
+    "title": "blog-post",
+    "url": "/",
+    "paragraph": "Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in."
+  },
+  {
+    "featured": false,
+    "title": "blog-post",
+    "url": "/",
+    "paragraph": "Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in."
+  },
+  {
+    "featured": false,
+    "title": "blog-post",
+    "url": "/",
+    "paragraph": "Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in."
+  },
+  {
+    "featured": false,
+    "title": "blog-post",
+    "url": "/",
+    "paragraph": "Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in."
+  },
+  {
+    "featured": true,
+    "title": "blog-post",
+    "url": "/",
+    "paragraph": "<p>Commodo sit quis occaecat cupidatat elit in duis ut veniam dolore in ut velit exercitation consequat in dolore excepteur est ea ullamco magna proident elit sit non cillum amet consectetur eu ut pariatur proident laboris velit velit in.</p><p>Pariatur ad excepteur reprehenderit ad in sint tempor sunt sunt consectetur minim nisi fugiat sit amet sit elit ut enim quis. Laboris cupidatat cillum adipisicing ad aute occaecat ea dolor mollit anim esse voluptate velit.</p><p>Veniam ut officia in sunt cillum qui eu aliquip aliquip irure id sunt in excepteur occaecat.</p>"
+  },
+  {
+    "featured": true,
+    "title": "Tab users, is it worth it?",
+    "url": "/",
+    "paragraph": "<p>Reading blog posts and watching youtube videos, it seems website developers spend 90% of their energy on supporting tab users for Grandad Accesibility.</p><p>Is this really worth it? Seems like alot of faff considering the sorta people who use tab to operate a website, aren't gonna get much use out of \"What bread am I?\" Buzzfeed quizes. I think web developers should start targeting their audience, by reducing the functionality of the page.</p><p>Your websites for the youds of today? Make the text tiny - to prevent gazes of senile eyes. You making a website for diet planning? Make the buttons tiny - so fat fingers isn't getting involved.</p>"
+  }
+]

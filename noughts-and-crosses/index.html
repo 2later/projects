@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<header>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</header>
+
+<body>
+
+<h2 id="winner-text"></h2>
+
+<div class="game-container">
+
+	<div class="row">
+		<button id="0" />
+		<button id="1" />
+		<button id="2" />
+	</div>
+
+	<div class="row">
+		<button id="3" />
+		<button id="4" />
+		<button id="5" />
+	</div>
+
+	<div class="row">
+		<button id="6" />
+		<button id="7" />
+		<button id="8" />
+	</div>
+
+</div>
+
+<div class="reset"> <button id="reset-button" onclick="innitBoard()">Reset</button> </div>
+
+</body>
+
+<script>
+
+let boardStates = ['e','e','e',  'e','e','e',  'e','e','e']
+let turn = true /* True = X, False = O*/
+let win;
+
+function innitBoard() {
+	boardStates = ['e','e','e',  'e','e','e',  'e','e','e'] /* reset board */
+	document.getElementById('winner-text').innerHTML = ''; win = false; /* reset win*/
+	/* Initialise buttons */
+	boardStates.forEach((_,i) => {
+		document.getElementById(i).addEventListener('click', () => onClick(i))
+	})
+	updateBoard() /* update the board */
+}
+ 
+function onClick(index) {
+	let updatedBoardStates = validateTurn(index)
+	boardStates = updatedBoardStates || boardStates;
+	
+	if ( updatedBoardStates ) updateBoard() /* Only update if the turn is legal */
+
+	if (win) showWinner();
+}
+
+function showWinner() {
+	document.getElementById('winner-text').innerHTML = `The winner is <b>${win}</b>`
+}
+
+function updateBoard() {
+	boardStates.forEach((piece, i) => {
+		document.getElementById(i).innerHTML = piece=='e' ? '' : ( piece ? 'X' : 'O' );
+	})
+	turn = !turn
+}
+
+function validateTurn(index) {
+	if (boardStates[index] !== "e") return /* Position already taken! */
+	
+	let attemptedMoveBoard = boardStates
+	attemptedMoveBoard[index] = turn
+
+	const notE = (a, b, c) => (attemptedMoveBoard[a] !== 'e' && attemptedMoveBoard[b] !== 'e' && attemptedMoveBoard[c] !== 'e')
+
+	const comparassion = (a, b, c) => (((attemptedMoveBoard[a] && attemptedMoveBoard[b] && attemptedMoveBoard[c]) || (!attemptedMoveBoard[a] && !attemptedMoveBoard[b] && !attemptedMoveBoard[c])) && notE(a, b, c) )
+
+	if ( comparassion(0,1,2) ||  comparassion(3,4,5) || comparassion(6,7,8) || comparassion(0,3,6) || comparassion(1,4,7) || comparassion(2,5,8) ||  comparassion(0,4,8) ||  comparassion(2,4,6)) {
+		win = turn ? 'X' : 'O';
+		return attemptedMoveBoard /* Still display winning move */
+	}
+
+	return attemptedMoveBoard
+}
+
+innitBoard();
+
+
+</script>
+
+</html>
+
+
+<style>
+
+
+body {
+	margin: 0px;
+}
+
+#winner-text {
+    text-align: center;
+    font-size: xxx-large;
+    color: black;
+    font-family: monospace;
+}
+
+#winner-text b {
+    color: blueviolet;
+    font-size: 3rem;
+}
+
+.game-container {
+	width: 60vh;
+	height: 60vh;
+	margin: 0 auto;
+	padding: 50px 0;
+	/* hovering box*/
+	background: blueviolet;
+	padding: 27px;
+    border-radius: 7px;
+    box-shadow: 0 0 15px grey;
+}
+
+.row {
+	display: flex;
+}
+
+/* Getting rid of edge border */
+.row #\30, #\31, #\32 { border-top: none; } 
+.row #\32, #\35, #\38 { border-right: none; }
+
+.row button {
+	width: 20vh;
+	height: 20vh;
+	border: 3px black solid;
+	background: none;
+	font-weight: 700;
+    color: black;
+    font-size: 1.5rem;
+    font-family: cursive;
+    border-left: none;
+    border-bottom: none;
+}
+
+.row button:hover:after  {
+	content: "X";
+	color: #0000003b;
+}
+
+.row button:focus {
+	outline: none;
+}
+
+.reset {
+	text-align: center;
+	margin: 1rem;
+}
+
+.reset #reset-button {
+	outline: blueviolet solid 0px;
+	outline-offset: -1px;
+	padding: 1rem;
+	width: 50%;
+	background: blueviolet;
+	color: white;
+	text-transform: uppercase;
+	font-size: 1.2rem;
+	border: none;
+    font-weight: bold;
+    transition: outline 100ms, outline-offset 100ms;
+}
+
+.reset #reset-button:hover {
+	outline: blueviolet solid 4px;
+	outline-offset: 3px;
+	transition: outline 100ms, outline-offset 100ms;
+}
+
+@media only screen and (max-width: 600px) {
+
+	.game-container {
+	    width: 30vh;
+	    height: 30vh;
+	}
+
+	.row button {
+	    width: 10vh;
+	    height: 10vh;
+	}
+
+}
+
+</style>

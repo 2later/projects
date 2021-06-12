@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html id="html">
+
+<body>
+
+<div class="random-container"><button id="random-button">Random</button></div>
+
+
+<div class="save-container">
+	<button id="save-button">Save Picture</button>
+
+	<input id="link-title" type="text" placeholder="SAVE AS..."></input>
+
+	<div class="saved-container">
+	<h2>Saved</h2>
+	<div id="links-list">No saves</div>
+	</div>
+</div>
+</body>
+
+<script>
+
+let currentLink;
+
+const ENDPOINT = 'https://prnt.sc/'
+const KEY = 'random_screenshots_links'
+
+const randomNumber = (x, y) => Math.floor((Math.random() * y) + x);
+const randomString = (x, y) => Math.random().toString(36).replace(/[^a-z]+/g, '').substr(x, y);
+const randomColor = () => {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+document.getElementById('random-button').addEventListener('click', () => newRandomImage())
+document.getElementById('save-button').addEventListener('click', () => saveLink())
+
+
+function changeBackground() {
+	document.getElementById('html').style.background = randomColor();
+}
+
+function newRandomImage() {
+	currentLink = `${ ENDPOINT }${ randomString(0,2) }${ randomNumber(1000,9999) }`;
+	window.open(currentLink,'Screenshot', 'width=600,height=500')
+}
+
+function saveLink() {
+	let currentLinksList = JSON.parse(localStorage.getItem(KEY)) || []
+	let title = document.getElementById('link-title').value
+	if (title === "") return
+	localStorage.setItem(KEY, JSON.stringify([...currentLinksList, {link: currentLink, title}]))
+	updateLinks()
+}
+
+function updateLinks() {
+	let currentLinksList = JSON.parse(localStorage.getItem(KEY)) || []
+	document.getElementById('links-list').innerHTML = ''
+	currentLinksList.forEach(link => {
+		let randomC = randomColor()
+		document.getElementById('links-list').innerHTML += `<div style="border-color: ${randomC}"><a style='color: ${randomC}' href='${link.link}' target='_blank'>${link.title}</a><span onClick='deleteLink("${link.link}")'>&#10006;</span></div>`
+	})
+}
+
+function deleteLink(link) {
+	let currentLinksList = JSON.parse(localStorage.getItem(KEY)) || []
+	localStorage.setItem(KEY, JSON.stringify(currentLinksList.filter(linkObj => linkObj.link !== link)))
+	updateLinks()
+}
+
+updateLinks()
+
+
+</script>
+
+
+<style>
+	
+html {
+	--background-color: rgb(239,242,255);
+	background: var(--background-color);
+	transition: background 10s;
+}
+
+body {
+	margin: 0;
+	text-align: -webkit-center;
+}
+
+.random-container {
+	width: 50%;
+	border: 2px rgb(214,210,255) dashed;
+	margin: 20px;
+}
+
+.save-container {
+	width: 60%;
+	border: 2px rgb(191 185 249) dashed;
+	margin: 20px;
+	font-family: sans-serif;
+}
+
+button {
+	width: 50%;
+	text-transform: uppercase;
+	padding: 10px 3px;
+	font-size: 3rem;
+	margin: 50px;
+	background: transparent;
+	color: var(--background-color);
+	outline: none;
+	border: none;
+	border-radius: 100px;
+	box-shadow: 0 0 9px #808080d1;
+}
+
+button:focus { outline none; }
+button:hover {
+	opacity: 0.8;
+	transition: opacity 100ms;
+}
+
+#random-button {
+	background: mediumorchid;
+}
+
+#save-button {
+	background: darkgoldenrod;
+	border-radius: 8px;
+}
+
+input {
+    display: block;
+    margin: 0 auto;
+    width: 55%;
+    font-size: 3rem;
+    background: transparent;
+    border: 2px darkgoldenrod solid;
+    border-radius: 3px;
+    padding: 2px;
+    color: darkgoldenrod;
+    text-align: center;
+    box-shadow: 0 0 11px #80808091; /* looks a bit weird*/
+}
+
+input::placeholder {
+	color: darkgoldenrod;
+}
+
+input:focus {
+	outline: none;
+/*	outline-color: #b8860b24;
+	outline-offset: 2px;
+	transition: outline-offset 100ms;*/
+}
+
+#links-list {
+    height: 200px;
+    overflow-y: scroll;
+    width: 540px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#links-list div {
+	position: relative;
+	width: 150px;
+	height: 50px;
+	margin: 50px;
+	border: 2px solid darkblue;
+	border-radius: 3px;
+	text-align: left;
+}
+
+#links-list div a {
+    color: darkblue;
+    font-family: sans-serif;
+    text-decoration: none;
+    position: absolute;
+    top: 9px;
+    left: 3px;
+    width: 120px;
+}
+
+
+div span {
+	position: absolute;
+    top: 1px;
+    font-size: 13px;
+    right: 3px;
+    color: indianred;
+    z-index: 10;
+    cursor: pointer;
+}
+
+div span:hover {
+	color: darkred;
+	opacity: 0.9;
+	transition: color 100ms;
+}
+
+#links-list div:hover {
+	opacity: 0.7;
+	transition: opacity 100ms;
+}
+
+.saved-container h2 {
+	margin: 10px 5px;
+	text-transform: uppercase;
+	text-align: center;
+	font-family: sans-serif;
+	color: #a51010;
+	display: none;
+}
+
+.saved-container {
+	margin: 20px;
+}
+
+</style>
+
+</hmtl>
