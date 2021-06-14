@@ -279,11 +279,6 @@ body {
 	transition: top 300ms;
 }
 
-.show-title > nav {
-	top: 55px;
-	transition: top 300ms;
-}
-
 .full textarea, #textarea-styling-container, .full > #textarea-styling-container {
 	left: 0vw;
 	transition: left 500ms, top 300ms;
@@ -297,11 +292,17 @@ textarea, #textarea-styling-container, #textarea-styling-container * {
   line-height: 20pt;
 }
 
+
+
+.show-title > textarea, .show-title > #textarea-styling-container, .show-title > #textarea-styling-container {
+	top: 100px;
+}
+
 textarea:focus {
 	outline: none;
 }
 
-.main > nav {
+.main nav {
 	position: absolute;
 	top: 3px;
 	right: 2vw;
@@ -321,6 +322,16 @@ textarea:focus {
 li i {
 	font-size: 1.5rem;
 }
+
+.show-title > nav {
+	top: 70px;
+}
+
+.show-title > nav {
+	top: 55px;
+	transition: top 300ms;
+}
+
 
 .hamburger-menu-open {
 	opacity: 0;
@@ -422,6 +433,51 @@ i {
 i:hover {
 	color: var(--darker-inset-color);
 	transition: color 100ms;
+}
+
+@media only screen and (max-width: 600px) {
+	aside {
+		height: 105vh;
+    	width: 40vw;
+    	opacity: 1;
+    	z-index: 2;
+	}
+
+	aside .hamburger-menu-close { z-index: 3; }
+
+	.main { z-index: 1; }
+	.main nav { z-index: 1; }	
+
+	.main > textarea { z-index: 3; }
+	.main > textarea, .main > #textarea-styling-container  {
+		top: 50px;
+		width: 53vw;
+		left: 37vw;
+	}
+
+	.main .title-input {
+		width: 73vw;
+		left: 41vw;
+		font-size: 1rem;
+	}
+
+	.full > .title-input {
+		width: 98vw;
+		left: 0;
+	}
+
+	.full textarea, #textarea-styling-container, .full > #textarea-styling-container {
+		width: 90vw;
+		left: 0;
+	}
+
+	.show-title > textarea, .show-title > #textarea-styling-container, .show-title > #textarea-styling-container {
+		top: 91px;
+	}
+
+	.show-title > nav {
+		top: 59px;
+	}
 }
 
 </style>
