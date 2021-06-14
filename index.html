@@ -28,11 +28,13 @@
 	</section>
 
 	<section class="blog-container">
-		<div class="blog-post">
-			<h1>Website Blog</h1>
-			<p>Got so much to talk about, have to make a blog about all my awesome websites.</p>
-			<p>This website uses the github API to gather a JSON list of all my projects in my repositry. It then compiles the HTML files into a list of objects. The title is either the name of the HTML file, or the name of the parent folder. Due to my dodgy programming, there is some weird asyncrounous function problems happening.</p>
-			<p>The list of websites contains a post div which contains the title and an iFrame - this is so you get a preview of the website. It is a cool concept, but in reality is janky and bad for peformance :( Also users which use Tab to operate are gonna struggle.</p>
+		<div id="big-blog-container">
+			<div class="blog-post" >
+				<h1>Website Blog</h1>
+				<p>Got so much to talk about, have to make a blog about all my awesome websites.</p>
+				<p>This website uses the github API to gather a JSON list of all my projects in my repositry. It then compiles the HTML files into a list of objects. The title is either the name of the HTML file, or the name of the parent folder. Due to my dodgy programming, there is some weird asyncrounous function problems happening.</p>
+				<p>The list of websites contains a post div which contains the title and an iFrame - this is so you get a preview of the website. It is a cool concept, but in reality is janky and bad for peformance :( Also users which use Tab to operate are gonna struggle.</p>
+			</div>
 		</div>
 
 		<section class="small-blog-container">
@@ -94,16 +96,16 @@
 
 const postsEl = document.getElementById('posts')
 const tinyBlogEl = document.getElementById('tiny-blog-container');
+const bigBlogContainerEl = document.getElementById('big-blog-container')
 const featuredBlogOneEl = document.getElementById('blogs-small-1')
 const featuredBlogTwoEl = document.getElementById('blogs-small-2')
 
 const postElTemplate = ({title, url}) =>  `<a href="${url}" target="_blank"><h3>${title}</h3><iframe scrolling="no" src="${url}"/></a>`
-const blogElTemplate = ({title, paragraph, url}) => `<a class="blog-post" href='${url}'><h1>${title}</h1><p>${paragraph}</p></a>`
+const blogElTemplate = ({title, paragraph, url}) => `<a class="blog-post" href='javascript:clickedBlog({title: \`${title}\`, paragraph: \`${paragraph.replaceAll("\'", "")}\`});'><h1>${title}</h1><p>${paragraph}</p></a>`
 
 const blogEndpoint = 'https://raw.githubusercontent.com/2later/projects/master/blog.json'
 const githubEndpoint = 'https://api.github.com/repos/2later/projects/contents/'
 const myEnpoint = "/" // file:///C:/Users/sagar/Documents/Random%20Small%20Projects/github-clone/projects/" // 
-
 const fileTitle = file => file.path.includes('index.html') ? file.path.replace('/index.html', '') : file.name.replace(".html","")
 const randomChoice = list => list[Math.floor(Math.random() * list.length)]
 
@@ -126,6 +128,14 @@ function showBlogs(listBlogs, blogEl) {
 	blogEl.innerHTML = ''
 	try { listBlogs.forEach(blog => { blogEl.innerHTML += blogElTemplate(blog) }) }
 	catch(e) { blogEl.innerHTML = blogElTemplate(listBlogs).replace('a', 'div') } /* If a featured blogpost */
+}
+
+function clickedBlog(blog) {
+	showBlogs(blog, bigBlogContainerEl)
+	window.scrollTo({
+		top: bigBlogContainerEl.offsetTop -10,
+		behavior: 'smooth',
+	})
 }
 
 async function updatePosts(endpoint) {
@@ -297,18 +307,22 @@ li i {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 2px;
+  	width: 10px;
+  	height: 2px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track  {
-  background: var(--background);
+  	background: var(--background);
+  	border-top-right-radius: 4px;
+  	border-bottom-right-radius: 4px;
+  	z-index: -10;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb  {
-  background: #888;
+  	background: #888;
+    border-top-right-radius: 4px;
 }
 
 /* Handle on hover */
@@ -316,12 +330,19 @@ li i {
   background: #555;
 }
 
-
-
 .small-blog-container {
 	display: flex;
 	gap: 10px;
 	margin: 20px;
+}
+
+.small-blog-container .blog-post {
+	height: 650px;
+	overflow-y: scroll;
+}
+
+.small-blog-container > div {
+	flex: 0.5;
 }
 
 .tiny-blog-container {
@@ -342,7 +363,6 @@ li i {
 	z-index: 1;
 	text-decoration: none;
 }
-
 
 .tiny-blog-container .blog-post::before {
 	content: '';
