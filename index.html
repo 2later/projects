@@ -9,10 +9,10 @@
 <title>Me Blog</title>
 <body id="body">
 
-	<header>
+	<header class="" id="header">
 		<div class="left">
-			<h1>Neu</h1>
-			<h1>morphism</h1>
+			<h1>Sa</h1>
+			<h1 class="bottom">gar</h1>
 		</div>
 		<nav class="right">
 			<ul>
@@ -99,6 +99,7 @@ const tinyBlogEl = document.getElementById('tiny-blog-container');
 const bigBlogContainerEl = document.getElementById('big-blog-container')
 const featuredBlogOneEl = document.getElementById('blogs-small-1')
 const featuredBlogTwoEl = document.getElementById('blogs-small-2')
+const headerEl = document.getElementById('header')
 
 const postElTemplate = ({title, url}) =>  `<a href="${url}" target="_blank"><h3>${title}</h3><iframe scrolling="no" src="${url}"/></a>`
 const blogElTemplate = ({title, paragraph, url}) => `<a class="blog-post" href='javascript:clickedBlog({title: \`${title}\`, paragraph: \`${paragraph.replaceAll("\'", "")}\`});'><h1>${title}</h1><p>${paragraph}</p></a>`
@@ -165,6 +166,11 @@ async function updateBlogs() {
 	showBlogs( randomChoice(blogs.filter(b => b.featured)), featuredBlogTwoEl )
 }
 
+window.onscroll = () => {
+	if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50)  headerEl.classList.add('scroll') 
+	else  headerEl.classList.remove('scroll') 
+}
+
 const startWebsite = async () => { await updatePosts(githubEndpoint); showPosts(); updateBlogs(); }
 startWebsite();
 
@@ -178,6 +184,7 @@ startWebsite();
 html {
 	--gray-background: #d7d9de;/*lavender;*/
 	--shadow: #bebebed1;
+	--negative-shadow: white;
 	--background: #f3f4ff;
 	--darker-inset-color: #a8afc6;
 	--pink-color: violet;
@@ -192,17 +199,30 @@ body {
 }
 
 header {
+	transform: scaleY(1);
+	transform-origin: top;
 	display: flex;
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
     margin: 0;
-    box-shadow: -1px -3px 16px 0px var(--shadow);
+    box-shadow: 9px -10px 22px var(--shadow);
     margin-bottom: 20px;
+    background: var(--background);
+    z-index: 100;
+    transition: transform 300ms;
+}
+
+.scroll {
+	position: sticky;
+	top: 0;
+	transform: scaleY(0.9);
 }
 
 header .left {
 	padding: 10px;
+	transform: translateY(0%);
+	transition: transform 300ms linear;
 }
 
 header .left h1 {
@@ -211,8 +231,23 @@ header .left h1 {
 	letter-spacing: 8px;
 	font-size: 3rem;
 	color: var(--background);
-	text-shadow: 0 0 9px var(--shadow);
+	text-shadow: 5px 7px 14px var(--shadow), -3px -4px 9px var(--negative-shadow);
 }
+
+
+header.scroll .left {
+	transform: translateY(25%);
+}
+
+header .left .bottom {
+	transform: translate(0,0); 
+	transition: transform 300ms linear;
+}
+
+header.scroll .left .bottom {
+	transform: translate(calc(2em - 20px), -90px);
+}
+
 
 header .right {
 	padding: 10px;
@@ -230,7 +265,7 @@ header .right ul li {
 	width: 50px;
 	height: 50px;
 	text-align-last: center;
-	box-shadow: 0 0 10px 0px var(--shadow);
+	box-shadow: 2px 2px 5px var(--shadow), -2px -3px 8px var(--negative-shadow);
 	border-radius: 5px;
 	transform: scale(1);
 	transition: transform 250ms;
@@ -240,11 +275,11 @@ header .right ul li {
 li i {
 	font-size: 2rem;
 	color: var(--background);
-	text-shadow: 0 0 7px var(--shadow);
+	text-shadow: 2px 3px 3px var(--shadow), -3px -1px 7px var(--negative-shadow);
 	padding-top: 6px;
 }
 
-.right ul li:hover, .right ul li:focus {
+.right ul li:hover, .right ul li:active {
 	transform: scale(0.9);
 }
 
@@ -266,7 +301,7 @@ li i {
 .posts a {
 	width: 300px;
     height: 300px;
-    box-shadow: 0 0 10px 0px var(--shadow);
+    box-shadow: 4px 4px 11px var(--shadow), -3px -4px 10px var(--negative-shadow);
     border-radius: 6px;
     text-align: left;
     overflow: hidden;
@@ -277,7 +312,7 @@ li i {
    	transition: transform 200ms;
 }
 
-.posts a:hover, .posts a:focus {
+.posts a:hover, .posts a:active {
 	transform: scale(1.05);
 	outline: none;
 }
@@ -376,23 +411,23 @@ li i {
 	transition: transform 300ms;
 }
 
-.tiny-blog-container .blog-post:hover::before, .tiny-blog-container .blog-post:focus::before {
+.tiny-blog-container .blog-post:hover::before, .tiny-blog-container .blog-post:active::before {
 	transform: scaleY(0.5);
 }
 
 .tiny-blog-container .blog-post:not(:first-child) {
 	transform: translateX(0);
 	margin-left: -15px;
-	box-shadow: -4px 0px 15px 0px var(--shadow);
+	box-shadow: -6px 1px 11px #bebebed1, 0px -4px 9px white;
 	width: 90%;
 }
 
-.tiny-blog-container .blog-post:first-child:hover, .tiny-blog-container .blog-post:first-child:focus, .tiny-blog-container .blog-post:last-child:hover, .tiny-blog-container .blog-post:last-child:focus  {
+.tiny-blog-container .blog-post:first-child:hover, .tiny-blog-container .blog-post:first-child:active, .tiny-blog-container .blog-post:last-child:hover, .tiny-blog-container .blog-post:last-child:active  {
 	transform: scale(1.05);
 	z-index: 3;
 }
 
-.tiny-blog-container .blog-post:hover:not(:first-child, :last-child), .tiny-blog-container .blog-post:focus:not(:first-child, :last-child) {
+.tiny-blog-container .blog-post:hover:not(:first-child, :last-child), .tiny-blog-container .blog-post:active:not(:first-child, :last-child) {
 	transform: translateX(-15px) scale(1.05) rotate(5deg);
 }
 
@@ -410,7 +445,7 @@ li i {
 
 .blog-post {
 	text-align: left;
-	box-shadow: 0 0 10px 0px var(--shadow);
+	box-shadow: 2px 2px 16px var(--shadow), -2px -3px 10px var(--negative-shadow);
 	border-radius: 10px;
 	padding: 15px;
 	margin-top: 50px;
@@ -443,6 +478,18 @@ li i {
 
 
 @media only screen and (max-width: 600px) {
+	header {
+		justify-content: center;
+		width: 102vw;
+	}
+
+	header.left {
+		padding: 0;
+		margin: 10px 0;
+	}
+	header.left h1 {
+		margin: 0;
+	}
 
 	header .right {
 		display: none;
@@ -468,6 +515,7 @@ li i {
 
 	.blog-post h1 {
 		font-size: 1rem;
+		text-shadow: none;
 	}
 
 	.blog-post p {
