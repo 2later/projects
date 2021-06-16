@@ -166,9 +166,20 @@ async function updateBlogs() {
 	showBlogs( randomChoice(blogs.filter(b => b.featured)), featuredBlogTwoEl )
 }
 
+
+let prevScrollTop = 0;
 window.onscroll = () => {
+	/* TOGGLE SCROLL CLASS ON SCROLL, ANIMATE TITLE, AND FIX HEADER */
 	if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50)  headerEl.classList.add('scroll') 
 	else  headerEl.classList.remove('scroll') 
+
+	/* HIDE SCROLL HEADER ON FAST SCROLL */
+	if (document.body.scrollTop > (prevScrollTop + 5)  || document.documentElement.scrollTop > (prevScrollTop + 5)) headerEl.classList.add('hidden')
+	else if (document.body.scrollTop < (prevScrollTop + 5)  || document.documentElement.scrollTop < (prevScrollTop + 5)) {
+		headerEl.classList.remove('hidden')
+		prevScrollTop = document.body.scrollTop || document.documentElement.scrollTop
+	}
+
 }
 
 const startWebsite = async () => { await updatePosts(githubEndpoint); showPosts(); updateBlogs(); }
@@ -216,7 +227,10 @@ header {
 .scroll {
 	position: sticky;
 	top: 0;
-	transform: scaleY(0.9);
+}
+
+.hidden {
+	transform: scaleY(0);
 }
 
 header .left {
